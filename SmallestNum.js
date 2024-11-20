@@ -6,7 +6,7 @@ function findSmallNum(num) {
 }
 
 findSmallNum([1, 2, 3, 4, 5, 6, 7, 8]);
-
+//--------------------------------------------------------//
 function SmallNum(num) {
   let smallest = num[0];
   for (let i = 0; i < num.length; i++) {
