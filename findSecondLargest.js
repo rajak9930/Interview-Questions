@@ -7,24 +7,34 @@ function findSecondLargest(arr) {
   // Example usage:
   findSecondLargest([10, 20, 4, 45, 99]); // Output: 45
   
-  function findSecondLargestCheck(arr) {
-    // Remove duplicates
-    const uniqueArr = [...new Set(arr)];
-  
-    // Use reduce to find the largest element
-    const largest = uniqueArr.reduce((max, current) => (current > max ? current : max), -Infinity);
-  
-    // Filter out the largest element and find the second largest
-    const secondLargest = uniqueArr.filter(num => num !== largest).reduce((max, current) => (current > max ? current : max), -Infinity);
-  
-    // Check if the second largest element exists
-    if (secondLargest === -Infinity) {
-      console.log("No second largest element found.");
-    } else {
-      console.log("Second largest element:", secondLargest);
+ function findSecondLargest(arr) {
+  if (arr.length < 2) {
+    console.log("Array must have at least two numbers");
+    return;
+  }
+
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (let num of arr) {
+    if (num > largest) {
+      secondLargest = largest; // Update second largest
+      largest = num; // Update largest
+    } else if (num > secondLargest && num < largest) {
+      secondLargest = num; // Update second largest
     }
   }
-  
-  // Example usage:
-  findSecondLargestCheck([10, 20, 4, 45, 99]); // Output: 45
+
+  if (secondLargest === -Infinity) {
+    console.log("No second largest element found");
+  } else {
+    console.log("Second Largest Element:", secondLargest);
+  }
+}
+
+// Example usage:
+findSecondLargest([10, 20, 4, 45, 99]); // Output: Second Largest Element: 45
+findSecondLargest([5]); // Output: Array must have at least two numbers
+findSecondLargest([10, 10, 10]); // Output: No second largest element found
+
   
